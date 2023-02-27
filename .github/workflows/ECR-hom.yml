@@ -1,0 +1,21 @@
+name: ECR Homologacao
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - './projetos/ecr/template.yml'
+
+env:
+  ENVIROMENT: "hom"
+  AWS_REGION: "us-east-1" # Virginia
+
+jobs:
+  deploy-cicd-virginia: # Região de Virginia
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: criação de ecr para microservices
+      run: echo "oi"

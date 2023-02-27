@@ -1,0 +1,104 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: ecr-(micro)services
+
+Parameters:
+  environment:
+    Type: String
+
+Resources:
+  # ECRRepository<NOME DO (MICRO)SERVIÇO>:
+  #   Type: AWS::ECR::Repository
+  #   Properties:
+  #     ImageTagMutability: IMMUTABLE
+  #     RepositoryName: !Sub "gtk-<NOME DO (MICRO)SERVIÇO>-${environment}"
+  #     LifecyclePolicy:
+  #       LifecyclePolicyText: |
+  #         {
+  #           "rules": [
+  #               {
+  #                 "rulePriority": 1,
+  #                 "description": "Remove imagens desatualizadas",
+  #                 "selection": {
+  #                     "tagStatus": "untagged",
+  #                     "countType": "imageCountMoreThan",
+  #                     "countNumber": 1
+  #                 },
+  #                 "action": {
+  #                     "type": "expire"
+  #                 }
+  #               }
+  #           ]
+  #         }
+
+  ECRRepositoryMsLocalizacao:
+    Type: AWS::ECR::Repository
+    Properties:
+      ImageTagMutability: IMMUTABLE
+      RepositoryName: !Sub "gtk-ms-localizacao-${environment}"
+      LifecyclePolicy:
+        LifecyclePolicyText: |
+          {
+            "rules": [
+                {
+                  "rulePriority": 1,
+                  "description": "Remove imagens desatualizadas",
+                  "selection": {
+                      "tagStatus": "untagged",
+                      "countType": "imageCountMoreThan",
+                      "countNumber": 1
+                  },
+                  "action": {
+                      "type": "expire"
+                  }
+                }
+            ]
+          }  
+
+  ECRRepositoryTelemetria:
+    Type: AWS::ECR::Repository
+    Properties:
+      ImageTagMutability: IMMUTABLE
+      RepositoryName: !Sub "gtk-telemetria-${environment}"
+      LifecyclePolicy:
+        LifecyclePolicyText: |
+          {
+            "rules": [
+                {
+                  "rulePriority": 1,
+                  "description": "Remove imagens desatualizadas",
+                  "selection": {
+                      "tagStatus": "untagged",
+                      "countType": "imageCountMoreThan",
+                      "countNumber": 1
+                  },
+                  "action": {
+                      "type": "expire"
+                  }
+                }
+            ]
+          }
+
+Outputs:
+# ECRRepositor<NOME DO (MICRO)SERVIÇO>Uri:
+#   Value:
+#     Fn::GetAtt:
+#     - ECRRepository<NOME DO (MICRO)SERVIÇO>
+#     - RepositoryUri
+#   Export:
+#     Name: ECRRepository<NOME DO (MICRO)SERVIÇO>Uri
+
+  ECRRepositoryMsLocalizacaoUri:
+    Value:
+      Fn::GetAtt:
+      - ECRRepositoryMsLocalizacao
+      - RepositoryUri
+    Export:
+      Name: ECRRepositoryMsLocalizacaoUri
+
+  ECRRepositoryTelemetriaUri:
+    Value:
+      Fn::GetAtt:
+      - ECRRepositoryTelemetria
+      - RepositoryUri
+    Export:
+      Name: ECRRepositoryTelemetriaUri
