@@ -2,17 +2,7 @@ AWSTemplateFormatVersion: 2010-09-09
 Description: ecr-(micro)services
 
 Parameters:
-  environment:
-
-  #                 },
-  #                 "action": {
-  #                     "type": "expire"
-  #                 }
-  #               }
-  #           ]
-  #         }
-
-  ECRRepositoryMsLocalizacao:
+  environmentCRRepositoryMsLocalizacao:
     Type: AWS::ECR::Repository
     Properties:
       ImageTagMutability: IMMUTABLE
