@@ -5,7 +5,7 @@ on:
     branches:
       - main
     paths:
-      - './projetos/ecr/template.yml'
+      - './projetos/ecr/**'
 
 env:
   ENVIROMENT: "hom"
