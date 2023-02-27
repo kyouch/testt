@@ -4,22 +4,6 @@ Description: ecr-(micro)services
 Parameters:
   environmentCRRepositoryMsLocalizacao:
     Type: AWS::ECR::Repository
-    Properties:
-      ImageTagMutability: IMMUTABLE
-      RepositoryName: !Sub "gtk-ms-localizacao-${environment}"
-      LifecyclePolicy:
-        LifecyclePolicyText: |
-          {
-            "rules": [
-                {
-                  "rulePriority": 1,
-                  "description": "Remove imagens desatualizadas",
-                  "selection": {
-                      "tagStatus": "untagged",
-                      "countType": "imageCountMoreThan",
-                      "countNumber": 1
-                  },
-                  "action": {
                       "type": "expire"
                   }
                 }
